@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 hello
 - from rich
+
+add another comment
 """
 
 from pathlib import Path

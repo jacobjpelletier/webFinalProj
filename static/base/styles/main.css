@@ -1,0 +1,12 @@
+body {
+    background-color: lightgrey;
+}
+
+h1.test {
+    color: blue;
+}
+
+.home-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+}

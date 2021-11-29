@@ -16,6 +16,7 @@ from .forms import RoomForm
 #    {'id':3, 'name':'Frontend Developers'},
 #]
 
+
 def loginPage(request):
     page = 'login'
     if request.user.is_authenticated:
@@ -40,9 +41,11 @@ def loginPage(request):
     context = {'page':page}
     return render(request, 'base/login_register.html', context)
 
+
 def logoutUser(request):
     logout(request)
     return redirect('home')
+
 
 def registerPage(request):
     form = UserCreationForm()
@@ -74,6 +77,7 @@ def home(request):
                'room_count':room_count, 'room_messages': room_messages}
     return render(request, 'base/home.html', context)
 
+
 def room(request,pk):
     room = Room.objects.get(id=pk)
     room_messages = room.message_set.all()
@@ -89,6 +93,7 @@ def room(request,pk):
     context = {'room':room, 'room_messages': room_messages, 'participants': participants}
     return render(request, 'base/room.html', context)
 
+
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
     rooms = user.room_set.all()
@@ -97,6 +102,7 @@ def userProfile(request, pk):
     context = {'user': user, 'rooms': rooms,
                'room_messages': room_messages, 'topics': topics}
     return render(request, 'base/profile.html', context)
+
 
 @login_required(login_url='login')
 def createRoom(request):

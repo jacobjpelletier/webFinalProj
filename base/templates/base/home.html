@@ -1,8 +1,9 @@
 {% extends 'main.html' %}
 
+{% if request.user.is_authenticated %}
     {% block content %}
 
-        <div class="home-container">
+        <div class="home-container m-5">
 
             <div>
                 {% include 'base/topics_component.html' %}
@@ -20,3 +21,7 @@
         </div>
 
     {% endblock %}
+{% else %}
+    <h1 class="display-6">Welcome!</h1>
+    <h2 class="display-4">Login to share your photos.</h2>
+{% endif %}

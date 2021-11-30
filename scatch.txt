@@ -1,21 +1,4 @@
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <!-- poop is used to test main.html (the base template) static files
-            - for example, if this .test h1 changes color (color:blue), then css working correct
-             code:
-             <h1 class="test">poop</h1>
-         -->
-
-        <img src="{% static 'base/images/blogLogo.jpg' %}" width="200px" alt="">
-
-        {% block content %}
-
-        {% endblock %}
-
+google API:
+name: webFinalProjGoogle
+id: webFinalProjGoogle5164514255
 

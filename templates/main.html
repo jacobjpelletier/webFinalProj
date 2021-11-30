@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
+{% load socialaccount %}
+
 <html lang="en">
 <head>
 
@@ -27,12 +29,16 @@
     <div class="d-flex justify-content-center m-5">
         <div class="card" style="width: 18rem;">
         <img src="{% static 'base/images/blogLogo.jpg' %}" class="card-img-top" alt="...">
-            <div class="card-body container">
+            <div class="card-body container mt-3">
+            <hr>
                 <div class="row">
                 {% block login %}
-
                 {% endblock %}
-                <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                <a class="btn btn-primary" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <div class="text-center">or</div>
+                {% if not user.is_authenticated %}
+                    <a class="btn btn-primary mt-2" href="{% provider_login_url 'google' %}"><i class="fab fa-google"></i> Login with Google</a>
+                {% endif %}
                 </div>
             </div>
         </div>

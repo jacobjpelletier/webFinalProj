@@ -15,29 +15,25 @@
 
     {% include 'navbar.html' %}
 
-
-        <!-- poop is used to test main.html (the base template) static files
-            - for example, if this .test h1 changes color (color:blue), then css working correct
-             code:
-             <h1 class="test">poop</h1>
-         -->
     {% if request.user.is_authenticated %}
         {% block content %}
 
         {% endblock %}
     {% else %}
     <div class="d-flex justify-content-center m-5">
-        <div class="card" style="width: 18rem;">
+        <div class="card p-2" style="width: 25rem;">
         <img src="{% static 'base/images/blogLogo.jpg' %}" class="card-img-top" alt="...">
             <div class="card-body container mt-3">
             <hr>
                 <div class="row">
                 {% block login %}
                 {% endblock %}
-                <a class="btn btn-primary" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
-                <div class="text-center">or</div>
-                {% if not user.is_authenticated %}
-                    <a class="btn btn-primary mt-2" href="{% provider_login_url 'google' %}"><i class="fab fa-google"></i> Login with Google</a>
+                {% if page != 'login' %}
+                    <a class="btn btn-primary" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                    <div class="text-center">or</div>
+                    {% if not user.is_authenticated %}
+                        <a class="btn btn-primary mt-2" href="{% provider_login_url 'google' %}"><i class="fab fa-google"></i> Login with Google</a>
+                    {% endif %}
                 {% endif %}
                 </div>
             </div>

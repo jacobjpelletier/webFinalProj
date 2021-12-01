@@ -105,16 +105,21 @@ def createRoom(request):
     form = RoomForm()
 
     if request.method == 'POST':
-        form = RoomForm(request.POST)
+        # MEDIA ACCESS MOD - added request.FILES
+        form = RoomForm(request.POST, request.FILES)
         if form.is_valid():
             room = form.save(commit=False)
             room.host = request.user
             room.save()
+            # changed from redirect('home')
             return redirect('home')
 
     context = {'form': form}
     return render(request, 'base/room_form.html', context)
 
+# temp view
+# def success(request):
+    # return HttpResponse('successfully uploaded')
 
 @login_required(login_url='login')
 def updateRoom(request, pk):

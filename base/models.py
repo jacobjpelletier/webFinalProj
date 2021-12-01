@@ -18,6 +18,8 @@ class Room(models.Model):
     participants = models.ManyToManyField(User, related_name='participants', blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    # Media Access
+    room_main_img = models.ImageField(upload_to='images/', default='')
 
     class Meta:
         ordering = ['-updated', '-created']

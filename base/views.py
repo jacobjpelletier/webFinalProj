@@ -118,9 +118,10 @@ def createRoom(request):
     context = {'form': form}
     return render(request, 'base/room_form.html', context)
 
+
 # temp view
 # def success(request):
-    # return HttpResponse('successfully uploaded')
+# return HttpResponse('successfully uploaded')
 
 @login_required(login_url='login')
 def updateRoom(request, pk):
@@ -154,7 +155,6 @@ def deleteRoom(request, pk):
 
 @login_required(login_url='login')
 def deleteMessage(request, pk):
-
     message = Message.objects.get(id=pk)
 
     if request.user != message.user:
@@ -166,4 +166,12 @@ def deleteMessage(request, pk):
     return render(request, 'base/delete.html', {'obj': message})
 
 
-
+def allphotos(request):
+    q = request.GET.get('q') if request.GET.get('q') is not None else ''
+    rooms = Room.objects.filter(
+        Q(topic__name__icontains=q) |
+        Q(name__icontains=q) |
+        Q(description__icontains=q)
+    )
+    context = {'rooms': rooms}
+    return render(request, 'base/all_photos.html', context)

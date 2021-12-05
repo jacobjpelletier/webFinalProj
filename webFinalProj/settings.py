@@ -163,11 +163,15 @@ USE_TZ = True
 static files now work, used this reference:
 https://learndjango.com/tutorials/django-static-files
 '''
-STATIC_URL = '/static/'
-# needed to point to static file directory
-STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
 
-STATICFILES_DIRS = ['static']
+# settings.py
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),) # new
+STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # new
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' # new
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

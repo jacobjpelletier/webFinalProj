@@ -1,11 +1,8 @@
-<h3>Browse Topics</h3>
-<hr>
+<ul class="nav nav-tabs">
+      <li class="nav-link justify-content-center"><a href="{% url 'home' %}">All</a></li>
+      {% for topic in topics %}
+          <li><a class="nav-link" href="{% url 'home' %}?q={{ topic.name }}">{{ topic.name }}</a></li>
+      {% endfor %}
+</ul>
 
-<div>
-    <a href="{% url 'home' %}">All</a>
-</div>
-{% for topic in topics %}
-    <div>
-        <a href="{% url 'home' %}?q={{ topic.name }}">{{ topic.name }}</a>
-    </div>
-{% endfor %}
+

@@ -18,6 +18,8 @@ class Room(models.Model):
     participants = models.ManyToManyField(User, related_name='participants', blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    # a user can have many likes, a room can have many likes, many to many. FK='likes'
+    likes = models.ManyToManyField(User, related_name='likes')
     # Media Access
     room_main_img = models.ImageField(upload_to='images/', default='')
 

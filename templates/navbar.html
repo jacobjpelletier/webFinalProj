@@ -23,13 +23,13 @@
             </li>
             <hr>
             <li class="nav-item">
-              <a class="nav-link text-primary active h5" aria-current="page" href="#">Home</a>
+              <a class="nav-link text-primary active h5" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-primary active h5" aria-current="page" href="#">Profile</a>
+              <a class="nav-link text-primary active h5" aria-current="page" href="{% url 'user-profile' user.id %}">My-Photos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-primary active h5" aria-current="page" href="#">My Photos</a>
+              <a class="nav-link text-primary active h5" aria-current="page" href="#">Photos-Stream</a>
             </li>
           </ul>
           <form class="d-flex" method="GET" action="{% url 'home' %}">

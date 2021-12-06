@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-%%a5*8q@@c988th&6i-%onq&h37b1+j+7ex4b7hrol5z=3$b+w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://git.heroku.com/web-final-proj-2021.git']
+ALLOWED_HOSTS = ['web-final-proj-2021.herokuapp.com/']
 
 
 # Application definition
@@ -77,8 +77,10 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 MIDDLEWARE = [
+    # for django-git-heroku deployment
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -113,8 +115,8 @@ WSGI_APPLICATION = 'webFinalProj.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# for DB, sqlite3 for development
 '''
-# development:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -122,12 +124,14 @@ DATABASES = {
     }
 }
 '''
+#for deployement
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'ciba',
         }
     }
+
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -177,6 +181,7 @@ static files now work, used this reference:
 https://learndjango.com/tutorials/django-static-files
 '''
 
+# settings.py
 '''
 # development
 STATIC_URL = '/static/'
@@ -185,10 +190,10 @@ STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles')) # new
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' # new
 '''
 
+# deployment
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 
 
@@ -201,21 +206,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
 django_heroku.settings(locals())
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-             'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
-        },
-    },
-}
